@@ -3,7 +3,8 @@
 #include <string>
 #include <fstream>
 #include <ctime>
+#include "namespace.h"
 
 using namespace std;
 
-namespace thewhitedog9487 {}
+using namespace thewhitedog9487;

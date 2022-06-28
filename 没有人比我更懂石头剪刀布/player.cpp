@@ -1,16 +1,16 @@
 #include "player.h"
 #include "system.h"
 
-auto twd_player::choose(twd_player& twd_player_a, twd_player& twd_system)->int {
+auto twd_player::choose()->int {
 	cout << "**********" << endl
 		<< "请选择您的技能" << endl
 		<< "1：石头" << endl
 		<< "2：剪刀" << endl
 		<< "3：布" << endl
 		<< "**********" << endl;
-	cin >> *(twd_player_a.choice+1);
-	twd_system.choose(twd_player_a, twd_system);
-	twd_system::change_score(twd_player_a,twd_system);
+	cin >> *(twd_player_user_a.choice+1);
+	twd_player_system_a.choose();
+	twd_system::change_score();
 	return 0;}
 
 twd_player::twd_player() {
