@@ -128,7 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include.h" />
-    <ClInclude Include="namespace.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="system.h" />
     <ClInclude Include="twd_player_system.h" />
