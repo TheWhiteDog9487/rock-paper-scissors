@@ -3,8 +3,8 @@
 #include "twd_player_user.h"
 #include "twd_player_system.h"
 
-extern twd_player_user twd_player_user_a;
-extern twd_player_system twd_player_system_a;
+extern twd_player* twd_player_user_a;
+extern twd_player* twd_player_system_a;
 
 auto twd_player::choose()->int {
 	cout << "**********" << endl
@@ -13,8 +13,8 @@ auto twd_player::choose()->int {
 		<< "2£º¼ôµ¶" << endl
 		<< "3£º²¼" << endl
 		<< "**********" << endl;
-	cin >> *(twd_player_user_a.choice+1);
-	twd_player_system_a.choose();
+	cin >> *(twd_player_user_a->choice+1);
+	twd_player_system_a->choose();
 	twd_system::change_score();
 	return 0;}
 
