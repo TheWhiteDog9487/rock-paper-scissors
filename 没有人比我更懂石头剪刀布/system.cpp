@@ -1,4 +1,9 @@
 #include "system.h"
+#include "twd_player_user.h"
+#include "twd_player_system.h"
+
+extern twd_player_user twd_player_user_a;
+extern twd_player_system twd_player_system_a;
 
 auto twd_system::display(){
 	cout << "**********" << endl
