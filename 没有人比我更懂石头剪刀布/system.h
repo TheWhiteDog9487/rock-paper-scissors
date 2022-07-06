@@ -1,6 +1,6 @@
 #pragma once
-#include "include.h"
 #include "player.h"
+#include "./¹¤¾ß¿â/include.h"
 
 class twd_system{
 public:

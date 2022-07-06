@@ -13,11 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="工具库">
+      <UniqueIdentifier>{b13e11a6-870d-4ad3-9ea7-ebeb16487b5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具库\头文件">
+      <UniqueIdentifier>{052d0176-dd11-4505-a241-050866f9c853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="工具库\源文件">
+      <UniqueIdentifier>{52d58c1f-de10-4154-b989-5023e56a86c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="player.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -29,6 +35,12 @@
     </ClInclude>
     <ClInclude Include="twd_player_system.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="工具库\free_ptr.h">
+      <Filter>工具库\头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="工具库\include.h">
+      <Filter>工具库\头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="twd_player_system.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="工具库\free_ptr.cpp">
+      <Filter>工具库\源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

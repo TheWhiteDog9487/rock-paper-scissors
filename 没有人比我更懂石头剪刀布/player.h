@@ -1,12 +1,11 @@
 #pragma once
-#include "include.h"
+#include "./¹¤¾ß¿â/include.h"
 
 class twd_player{
 public:
-	string* name;
-	int* score;
-	int* choice;
+	unique_ptr<string> name;
+	unique_ptr<int> score;
+	shared_ptr<int[]> choice;
 	virtual auto choose()->int;
 	twd_player();
-	twd_player(string name);
-	~twd_player();};
+	twd_player(string name);};

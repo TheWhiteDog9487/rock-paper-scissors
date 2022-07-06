@@ -3,8 +3,8 @@
 #include "twd_player_user.h"
 #include "twd_player_system.h"
 
-extern twd_player* twd_player_user_a;
-extern twd_player* twd_player_system_a;
+extern unique_ptr<twd_player> twd_player_user_a;
+extern unique_ptr<twd_player> twd_player_system_a;
 
 auto twd_player::choose()->int {
 	cout << "**********" << endl
@@ -13,28 +13,17 @@ auto twd_player::choose()->int {
 		<< "2£º¼ôµ¶" << endl
 		<< "3£º²¼" << endl
 		<< "**********" << endl;
-	cin >> *(twd_player_user_a->choice+1);
+	cin >> twd_player_user_a->choice[1];
 	twd_player_system_a->choose();
 	twd_system::change_score();
 	return 0;}
 
 twd_player::twd_player() {
-	this->name = new string("");
-	this->score = new int(0);
-	this->choice = new int[2]();}
+	this->name = make_unique<string>("");
+	this->score = make_unique<int>(0);
+	this->choice = make_shared<int[2]>(0);}
 
 twd_player::twd_player(string name) {
-	this->name = new string(name);
-	this->score = new int(0);
-	this->choice = new int[2]();}
-
-twd_player::~twd_player(){
-	if (this->name != nullptr) {
-		delete this->name;
-		this->name = nullptr;}
-	if (this->score != nullptr) {
-		delete this->score;
-		this->score = nullptr;}
-	if (this->choice != nullptr) {
-		delete[] this->choice;
-		this->choice = nullptr;}}
+	this->name = make_unique<string>(name);
+	this->score = make_unique<int>(0);
+	this->choice = make_shared<int[2]>(0);}

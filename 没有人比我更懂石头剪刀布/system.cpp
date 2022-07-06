@@ -2,8 +2,8 @@
 #include "twd_player_user.h"
 #include "twd_player_system.h"
 
-extern twd_player* twd_player_user_a;
-extern twd_player* twd_player_system_a;
+extern unique_ptr<twd_player> twd_player_user_a;
+extern unique_ptr<twd_player> twd_player_system_a;
 
 auto twd_system::display(){
 	cout << "**********" << endl
@@ -26,8 +26,8 @@ auto twd_system::menu() {
 		<< "2：开始游戏" << endl
 		<< "3：退出" << endl
 		<< "请输入您的选择：" << endl;
-	cin >> *(twd_player_user_a->choice);
-	switch (*(twd_player_user_a->choice)) {
+	cin >> twd_player_user_a->choice[0];
+	switch (twd_player_user_a->choice[0]) {
 	case 1:
 		twd_system::display();
 		break;
@@ -39,25 +39,25 @@ auto twd_system::menu() {
 		break;}}
 
 auto twd_system::change_score() ->int {
-	if (*(twd_player_user_a->choice + 1) == *(twd_player_system_a->choice + 1)) { cout << "平局！" << endl; }
-	else if (*(twd_player_user_a->choice + 1) == 1 && *(twd_player_system_a->choice + 1) == 2) {
+	if (twd_player_user_a->choice[1] == twd_player_system_a->choice[1]) { cout << "平局！" << endl; }
+	else if (twd_player_user_a->choice[1] == 1 && twd_player_system_a->choice[1] == 2) {
 		cout << "你赢了！" << endl;
 		(*twd_player_user_a->score)++;}
-	else if (*(twd_player_user_a->choice + 1) == 1 && *(twd_player_system_a->choice + 1) == 3) {
+	else if (twd_player_user_a->choice[1] == 1 && twd_player_system_a->choice[1] == 3) {
 		cout << "输了！" << endl;
 		(*twd_player_system_a->score)++;}
 
-	else if (*(twd_player_user_a->choice + 1) == 2 && *(twd_player_system_a->choice + 1) == 1) {
+	else if (twd_player_user_a->choice[1] == 2 && twd_player_system_a->choice[1] == 1) {
 		cout << "输了！" << endl;
 		(*twd_player_system_a->score)++;}
-	else if (*(twd_player_user_a->choice + 1) == 2 && *(twd_player_system_a->choice + 1) == 3) {
+	else if (twd_player_user_a->choice[1] == 2 && twd_player_system_a->choice[1] == 3) {
 		cout << "你赢了！" << endl;
 		(*twd_player_user_a->score)++;}
 
-	else if (*(twd_player_user_a->choice + 1) == 3 && *(twd_player_system_a->choice + 1) == 1) {
+	else if (twd_player_user_a->choice[1] == 3 && twd_player_system_a->choice[1] == 1) {
 		cout << "你赢了！" << endl;
 		(*twd_player_user_a->score)++;}
-	else if (*(twd_player_user_a->choice + 1) == 3 && *(twd_player_system_a->choice + 1) == 2) {
+	else if (twd_player_user_a->choice[1] == 3 && twd_player_system_a->choice[1] == 2) {
 		cout << "输了！" << endl;
 		(*twd_player_system_a->score)++;}
 	return 0;}
