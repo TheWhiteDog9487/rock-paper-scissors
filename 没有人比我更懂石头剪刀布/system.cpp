@@ -5,19 +5,24 @@
 extern unique_ptr<twd_player> twd_player_user_a;
 extern unique_ptr<twd_player> twd_player_system_a;
 
-auto twd_system::display(){
-	cout << "**********" << endl
+auto twd_system::display() {
+	system("cls");
+	cout << "********************" << endl
 		<< "下面是各位选手的得分" << endl
-		<< *twd_player_user_a->name << " 选手的得分是：" << * twd_player_user_a->score << " 分！" << endl
+		<< *twd_player_user_a->name << " 选手的得分是：" << *twd_player_user_a->score << " 分！" << endl
 		<< *twd_player_system_a->name << " 选手的得分是：" << *twd_player_system_a->score << " 分！" << endl
-		<< "**********" << endl;;}
+		<< "********************" << endl;
+	cout << "按回车返回主界面" << endl;
+	cin.get();
+	cin.get();
+	twd_system::menu();}
 
 auto twd_system::check(){
 	if (*twd_player_user_a->score < *twd_player_system_a->score) { cout << "这个 "<< *twd_player_user_a->name << "真的是太逊了！" << endl; }
 	else if (*twd_player_user_a->score = *twd_player_system_a->score) { cout << "旗鼓相当了属于是" << endl; }
 	else if (*twd_player_user_a->score > *twd_player_system_a->score) { cout << "太厉害了！" << endl; }}
 
-auto twd_system::menu() {
+auto twd_system::menu()->void {
 	system("cls");
 	cout << "欢迎游玩 石头剪刀布！" << endl
 		<< "您的用户名是：" << *twd_player_user_a->name << endl
@@ -39,26 +44,26 @@ auto twd_system::menu() {
 		break;}}
 
 auto twd_system::change_score() ->int {
-	if (twd_player_user_a->choice[1] == twd_player_system_a->choice[1]) { cout << "平局！" << endl; }
+	if (twd_player_user_a->choice[1] == twd_player_system_a->choice[1]) { cout << "平局！\n" << endl; }
 	else if (twd_player_user_a->choice[1] == 1 && twd_player_system_a->choice[1] == 2) {
-		cout << "你赢了！" << endl;
+		cout << "你赢了！\n" << endl;
 		(*twd_player_user_a->score)++;}
 	else if (twd_player_user_a->choice[1] == 1 && twd_player_system_a->choice[1] == 3) {
-		cout << "输了！" << endl;
+		cout << "输了！\n" << endl;
 		(*twd_player_system_a->score)++;}
 
 	else if (twd_player_user_a->choice[1] == 2 && twd_player_system_a->choice[1] == 1) {
-		cout << "输了！" << endl;
+		cout << "输了！\n" << endl;
 		(*twd_player_system_a->score)++;}
 	else if (twd_player_user_a->choice[1] == 2 && twd_player_system_a->choice[1] == 3) {
-		cout << "你赢了！" << endl;
+		cout << "你赢了！\n" << endl;
 		(*twd_player_user_a->score)++;}
 
 	else if (twd_player_user_a->choice[1] == 3 && twd_player_system_a->choice[1] == 1) {
-		cout << "你赢了！" << endl;
+		cout << "你赢了！\n" << endl;
 		(*twd_player_user_a->score)++;}
 	else if (twd_player_user_a->choice[1] == 3 && twd_player_system_a->choice[1] == 2) {
-		cout << "输了！" << endl;
+		cout << "输了！\n" << endl;
 		(*twd_player_system_a->score)++;}
 	return 0;}
 
@@ -73,5 +78,4 @@ auto twd_system::init()->int {
 	if (temp_name != nullptr) {
 		delete temp_name;
 		temp_name = nullptr;}
-	twd_system::menu();
 	return 0;}

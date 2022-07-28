@@ -9,5 +9,6 @@ unique_ptr<twd_player> twd_player_system_a = make_unique<twd_player_system>();
 
 int main() {
 	twd_system::init();
+	twd_system::menu();
 	
 }
