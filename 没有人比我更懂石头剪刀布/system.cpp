@@ -5,6 +5,9 @@
 extern unique_ptr<twd_player> twd_player_user_a;
 extern unique_ptr<twd_player> twd_player_system_a;
 
+extern unique_ptr<ofstream> ofs;
+extern unique_ptr<ifstream> ifs;
+
 auto twd_system::display() {
 	system("cls");
 	cout << "********************" << endl
@@ -29,7 +32,8 @@ auto twd_system::menu()->void {
 		<< "请根据下列菜单输入您的选择：" << endl
 		<< "1：查询得分" << endl
 		<< "2：开始游戏" << endl
-		<< "3：退出" << endl
+		<< "3：保存/读取分数" << endl
+		<< "4：退出" << endl
 		<< "请输入您的选择：" << endl;
 	cin >> twd_player_user_a->choice[0];
 	switch (twd_player_user_a->choice[0]) {
@@ -40,6 +44,8 @@ auto twd_system::menu()->void {
 		twd_player_user_a->choose();
 		break;
 	case 3:
+		twd_system::iofile();
+	case 4:
 		return;
 		break;}}
 
@@ -79,3 +85,40 @@ auto twd_system::init()->int {
 		delete temp_name;
 		temp_name = nullptr;}
 	return 0;}
+
+auto twd_system::iofile() -> void{
+	
+	system("cls");
+	cout << "您是想从文件读取分数呢？还是将分数存储到文件中呢？" << endl
+		<< "1：从文件读取分数" << endl
+		<< "2：将分数存储到文件" << endl
+		<< "请输入您的选择：" << endl;
+	cin >> twd_player_user_a->choice[3];
+	cout << "请选择存储分数的文件的类型："<< endl
+		<< "1：文本文件" << endl
+		<< "2：二进制文件" << endl
+		<< "请输入您的选择：" << endl;
+	cin >> twd_player_user_a->choice[4];
+	switch (twd_player_user_a->choice[4]) {
+	case 1:
+		if (twd_player_user_a->choice[3] == 1) {
+
+		}
+		else if (twd_player_user_a->choice[3] == 2) {
+			ofs->open("分数.binary", ios::out);
+			*ofs << *twd_player_user_a->name << "的分数是：" << *twd_player_user_a->score << endl;
+			*ofs << *twd_player_system_a->name << "的分数是：" << *twd_player_system_a->score << endl;
+			ofs->close();}
+		break;
+	case 2:
+		if (twd_player_user_a->choice[3] == 1){
+			
+		}
+		else if (twd_player_user_a->choice[3] == 2){
+			ofs->open("分数.binary", ios::out | ios::binary);
+			*ofs << *twd_player_user_a->name << "的分数是：" << *twd_player_user_a->score << endl;
+			*ofs << *twd_player_system_a->name << "的分数是：" << *twd_player_system_a->score << endl;
+			ofs->close();}
+		break;}
+	
+}

@@ -8,4 +8,5 @@ public:
 	auto check();
 	static auto init()->int;
 	static auto menu()->void;
-	static auto change_score()->int;};
+	static auto change_score()->int;
+	static auto iofile()->void;};

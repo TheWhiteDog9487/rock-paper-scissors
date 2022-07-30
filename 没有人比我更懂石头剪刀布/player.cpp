@@ -38,4 +38,4 @@ twd_player::twd_player() {
 twd_player::twd_player(string name) {
 	this->name = make_unique<string>(name);
 	this->score = make_unique<int>(0);
-	this->choice = make_shared<int[3]>(0);}
+	this->choice = make_shared<int[5]>(0);}
