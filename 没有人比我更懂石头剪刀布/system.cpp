@@ -84,8 +84,7 @@ auto twd_system::init()->int {
 	return 0;}
 
 auto twd_system::iofile() -> void{
-	ifstream ifs;
-	ofstream ofs;
+	fstream fs;
 	system("cls");
 	cout << "您是想从文件读取分数呢？还是将分数存储到文件中呢？" << endl
 		<< "1：从文件读取分数" << endl
@@ -100,13 +99,29 @@ auto twd_system::iofile() -> void{
 	switch (twd_player_user_a->choice[4]) {
 	case 1:
 		if (twd_player_user_a->choice[3] == 1) {
-
-		}
+			char buffer = 0;
+			string score_temp[2] = { "" };
+			fs.open("分数.txt", ios::in);
+			if (!fs.is_open()) {
+				cout << "文件打开失败！" << endl;}
+			for (long long temp = 0; fs >> buffer; temp++) {
+				if (temp >= twd_player_user_a->name->length() + 4) {
+					score_temp[0].append(to_string(buffer)); }
+				if (buffer == '\n') {
+					temp = -1;}
+				if (temp >= twd_player_system_a->name->length() + 4) {
+					score_temp[1].append(to_string(buffer));}
+				if (buffer == EOF) {
+					break;}}
+			fs.close();
+			*twd_player_user_a->score = stoll(score_temp[0]);
+			*twd_player_system_a->score = stoll(score_temp[0]);}
+		
 		else if (twd_player_user_a->choice[3] == 2) {
-			ofs.open("分数.txt", ios::out);
-			ofs << *twd_player_user_a->name << "的分数是：" << *twd_player_user_a->score << endl;
-			ofs << *twd_player_system_a->name << "的分数是：" << *twd_player_system_a->score;
-			ofs.close();}
+			fs.open("分数.txt", ios::out);
+			fs << *twd_player_user_a->name << "的分数是：" << *twd_player_user_a->score << endl;
+			fs << *twd_player_system_a->name << "的分数是：" << *twd_player_system_a->score;
+			fs.close();}
 		break;
 	case 2:
 		if (twd_player_user_a->choice[3] == 1){
@@ -116,10 +131,12 @@ auto twd_system::iofile() -> void{
 			string temp[2];
 			temp[0] = twd_player_user_a->name->append("的分数是：").append(to_string(*twd_player_user_a->score).append("\n"));
 			temp[1] = twd_player_system_a->name->append("的分数是：").append(to_string(*twd_player_system_a->score));
-			ofs.open("分数.binary", ios::out | ios::binary);
-			ofs.write((const char*)&temp[0], sizeof(temp[0]));
-			ofs.write((const char*)&temp[1], sizeof(temp[1]));
-			ofs.close();}
+			fs.open("分数.binary", ios::out | ios::binary);
+			fs.write((const char*)&temp[0], sizeof(temp[0]));
+			fs.write((const char*)&temp[1], sizeof(temp[1]));
+			fs.close();}
 		break;}
-	
-}
+	cout << "按回车返回主界面" << endl;
+	cin.get();
+	cin.get();
+	twd_system::menu();}
