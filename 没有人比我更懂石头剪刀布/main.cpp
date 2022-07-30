@@ -3,9 +3,6 @@
 #include "twd_player_system.h"
 #include "./¹¤¾ß¿â/include.h"
 
-unique_ptr<ofstream>ofs=make_unique<ofstream>();
-unique_ptr<ifstream>ifs=make_unique<ifstream>();
-
 unique_ptr<twd_player> twd_player_user_a = make_unique<twd_player_user>();
 unique_ptr<twd_player> twd_player_system_a = make_unique<twd_player_system>();
 
