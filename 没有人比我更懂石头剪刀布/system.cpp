@@ -105,9 +105,9 @@ auto twd_system::iofile() -> void{
 
 		}
 		else if (twd_player_user_a->choice[3] == 2) {
-			ofs->open("分数.binary", ios::out);
+			ofs->open("分数.txt", ios::out);
 			*ofs << *twd_player_user_a->name << "的分数是：" << *twd_player_user_a->score << endl;
-			*ofs << *twd_player_system_a->name << "的分数是：" << *twd_player_system_a->score << endl;
+			*ofs << *twd_player_system_a->name << "的分数是：" << *twd_player_system_a->score;
 			ofs->close();}
 		break;
 	case 2:
@@ -115,9 +115,12 @@ auto twd_system::iofile() -> void{
 			
 		}
 		else if (twd_player_user_a->choice[3] == 2){
+			string temp[2];
+			temp[0] = twd_player_user_a->name->append("的分数是：").append(to_string(* twd_player_user_a->score).append("\n"));
+			temp[1] = twd_player_system_a->name->append("的分数是：").append(to_string(*twd_player_system_a->score));
 			ofs->open("分数.binary", ios::out | ios::binary);
-			*ofs << *twd_player_user_a->name << "的分数是：" << *twd_player_user_a->score << endl;
-			*ofs << *twd_player_system_a->name << "的分数是：" << *twd_player_system_a->score << endl;
+			ofs->write((const char*)&temp[0], sizeof(temp[0]));
+			ofs->write((const char*)&temp[1], sizeof(temp[1]));
 			ofs->close();}
 		break;}
 	
