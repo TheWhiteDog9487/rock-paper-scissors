@@ -103,7 +103,9 @@ auto twd_system::iofile() -> void{
 			string score_temp[2] = { "" };
 			fs.open("分数.txt", ios::in);
 			if (!fs.is_open()) {
-				cout << "文件打开失败！" << endl;}
+				cout << "文件打开失败！" << endl;
+				return;}
+			else{
 			for (long long temp = 0; fs >> buffer; temp++) {
 				if (temp >= twd_player_user_a->name->length() + 4) {
 					score_temp[0].append(to_string(buffer)); }
@@ -115,7 +117,7 @@ auto twd_system::iofile() -> void{
 					break;}}
 			fs.close();
 			*twd_player_user_a->score = stoll(score_temp[0]);
-			*twd_player_system_a->score = stoll(score_temp[0]);}
+			*twd_player_system_a->score = stoll(score_temp[0]);}}
 		
 		else if (twd_player_user_a->choice[3] == 2) {
 			fs.open("分数.txt", ios::out);
